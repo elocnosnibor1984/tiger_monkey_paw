@@ -1,0 +1,89 @@
+.starDiv{
+	display: inline-block;
+}
+.stars{
+	color:yellow;
+	font-size: 25px;
+}
+.notStars{
+	/*color:yellow;*/
+	font-size: 25px;
+}
+
+h1{
+	color: red;
+}
+
+.listTitle{
+	display: inline-block;
+	margin-right: 20px;
+	font-family: 'Open Sans', sans-serif;
+	letter-spacing: -3px;
+	margin-bottom: 40px;
+}
+
+.videoTitle{
+	display: inline-block;
+	margin-right: 20px;
+	font-family: 'Open Sans', sans-serif;
+	letter-spacing: -2px;
+}
+
+.videoTitle2{
+	margin-left: 5px;
+}
+
+#addVideo{
+	margin-right: 200px;
+}
+.videoDescription{
+	display: inline-block;
+	width: 500px;
+	vertical-align: top;
+	height: 158px;
+}
+.backButton{
+	text-decoration: none;
+}
+#siteHeader{
+	font-family: 'Lobster', cursive;
+	color: red;
+	display: inline-block;
+}
+p,td,th, h3{
+	font-family: 'Open Sans', sans-serif;
+}
+.table .numVids{
+	text-align: center;
+}
+#nav{
+	display: inline-block;
+}
+#nav{
+    list-style-type: none;
+    margin: 0 0 0 30px;
+    padding: 0;
+}
+li a {
+    display: block;
+    width: 60px;
+    color: grey;
+}
+#nav li{
+	display: inline-block;
+}
+ul li a{
+	text-decoration: none;
+}
+#header{
+	border-bottom: 1px solid rgb(200,200,200);
+	margin-bottom: 30px;
+}
+.changePositionForm{
+	display: inline-block;
+}
+@media (min-width: 811px) {    
+    .container{
+        width:810px;
+    }
+}

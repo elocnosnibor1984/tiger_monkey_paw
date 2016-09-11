@@ -1,0 +1,29 @@
+<button><a href="#/main" class="backButton"> Back to Main </a></button><br>
+
+<h1 class="listTitle">{{video.title}}</h1>
+<div ng-repeat="n in video.rating track by $index" class="starDiv">
+	 	<span ng-if="n" class="stars">&#9733;</span>
+	 	<span ng-if="!n" class="notStars"> &#9734;</span>
+		
+	</div><br>
+
+
+
+<!-- <button ng-click="deleteVideo()">Delete Video</button> -->
+
+<!-- {{video}} -->
+<!-- {{video.url}}<br> -->
+	 <!-- VIDEO URL: {{video.url | trusted}} -->
+<div>
+
+   <iframe width="560" height="315" ng-src="{{video.url | trusted2}}" 
+     frameborder="0" allowfullscreen></iframe>
+     <p>Update your review</p>
+    <textarea rows="18" cols="60" style="vertical-align:top" ng-model="video.description"></textarea>
+    <!-- <button ng-click="deleteVideo(video._id)">Delete Video</button> -->
+    <p>Change number of Stars: <input type="number" ng-model="video.stars" min="1" max="5"></p>
+    <!-- {{video._id}} -->
+    <button ng-click="updateReview(video._id)">Update</button>
+</div>
+</div>
+</div>

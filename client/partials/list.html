@@ -1,0 +1,58 @@
+
+
+<h1 class="listTitle">{{listTitle}}</h1>
+
+<!-- <button><a href="#/main" class="backButton"> Back to Main </a></button> -->
+
+<button id="addVideo" ng-click="addVideoForm()">Add Video</button>
+
+<button ng-click="deleteList()">Delete List</button>
+
+<div ng-show="showVidForm">
+<h4>Add Video Info</h4>
+<form>
+	<p>Video Title: <input type="text" ng-model="v.title"></p>
+	<p>Description: <textarea ng-model="v.description"></textarea>
+	<p>Browser Url: <input type="text" ng-model="v.url"></p>
+	<p>Number of Stars: <input type="number" ng-model="v.rating" min="1" max="5"></p>
+	<p><input type="submit" value="Submit" ng-click="addVideoToList()"></p>
+</form>
+</div>
+
+<!-- {{videos}} -->
+
+
+<div ng-repeat="video in videos | orderBy: 'position'"  style="padding:20px">
+
+	<h4 class="videoTitle">{{video.position+1}}. <span class="videoTitle2">{{video.title}}</span></h4>
+	 <!-- {{video.rating}} -->
+	 <div ng-repeat="n in video.rating track by $index" class="starDiv">
+	 	<span ng-if="n" class="stars">&#9733;</span>
+	 	<span ng-if="!n" class="notStars"> &#9734;</span>
+		
+	</div>
+<div>
+
+
+   <iframe width="280" height="158" ng-src="{{video.url | trusted}}" 
+     frameborder="0" allowfullscreen></iframe>
+
+
+
+
+    <textarea class="videoDescription" readonly="true">{{video.description}}</textarea><br>
+    <!-- <button ng-click="deleteVideo(video._id)">Delete from List</button> -->
+    <form class="changePositionForm">
+	<select ng-model="v.position">
+		<!-- <option selected="selected" value="{{video.position}}">{{video.position + 1}}</option> -->
+		<option ng-repeat="v in videos | orderBy: 'position'">{{v.position+1}}</option>
+	</select> 
+	<input type="submit" value="Change Place" ng-click="changePosition(v.position, video.position, video._id)">
+	</form>
+	<button ng-click="editReview(video._id)">Edit Review</button>
+<button ng-click="deleteVideo(video._id, video.position)">Delete Video</button>
+</div>
+
+
+</div>
+</div>

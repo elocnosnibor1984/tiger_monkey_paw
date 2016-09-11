@@ -1,4 +1,4 @@
-var myApp = angular.module('Myapp', ['ngRoute']);
+var myApp = angular.module('Myapp', ['ngSanitize', 'youtube-embed','ngRoute', 'ui.bootstrap']);
 // We instantiate our application and we inject ngrouter so that it's available
 // and so that we can use it to set up our routes below. 
 
@@ -13,6 +13,31 @@ var myApp = angular.module('Myapp', ['ngRoute']);
 			{
 				controller: 'indexController',
 				templateUrl: "partials/index.html"
+			})
+			.when('/main', 
+			{
+				controller: 'mainController',
+				templateUrl: "partials/main.html"
+			})
+			.when('/about', 
+			{
+				controller: 'mainController',
+				templateUrl: "partials/about.html"
+			})
+			.when('/tips', 
+			{
+				controller: 'mainController',
+				templateUrl: "partials/tips.html"
+			})
+			.when('/list/:id', 
+			{
+				controller: 'listController',
+				templateUrl: "partials/list.html"
+			})
+			.when('/edit/:list/:video', 
+			{
+				controller: 'editController',
+				templateUrl: "partials/edit.html"
 			})
 	})
 }());

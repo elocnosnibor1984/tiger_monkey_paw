@@ -1,0 +1,25 @@
+<!-- <h1>Main</h1> -->
+<h1 class="listTitle">My Lists</h1>
+<button ng-click="createList()">Create List</button>
+
+<div ng-show="showMe">
+<form>
+	<p>List Title: <input type="text" ng-model="newList.title"></p>
+	<p>Description: <input type="text" ng-model="newList.description"></p>
+	<p><input type="submit" value="Add List" ng-click="addList()"></p>
+</form>
+</div>
+
+<!-- {{lists}} -->
+<table class="table table-striped">
+	<thead>
+		<tr><th>List Title (click title to see the list)</th><th>Description</th><th class="numVids"># of Videos</th><th>Last Updated</th></tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="l in lists">
+		<td><a ng-href="#/list/{{l._id}}">{{l.title}}</a></td><td>{{l.description}}</td><td class="numVids">{{l._videos.length}}</td><td>{{l.updatedAt | date: 'MMMM, dd, yyyy'}}</td></tr>
+		
+	</tbody>
+</table>
+
+<!-- <h3>Most Popular Videos</h3> -->
