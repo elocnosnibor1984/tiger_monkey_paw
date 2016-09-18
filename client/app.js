@@ -1,4 +1,4 @@
-var myApp = angular.module('Myapp', ['ngSanitize', 'youtube-embed','ngRoute', 'ui.bootstrap']);
+var myApp = angular.module('Myapp', ['ngSanitize', 'angularModalService', 'ngAnimate', 'youtube-embed','ngRoute', 'ui.bootstrap']);
 // We instantiate our application and we inject ngrouter so that it's available
 // and so that we can use it to set up our routes below. 
 
@@ -11,8 +11,8 @@ var myApp = angular.module('Myapp', ['ngSanitize', 'youtube-embed','ngRoute', 'u
 		$routeProvider
 			.when('/', 
 			{
-				controller: 'indexController',
-				templateUrl: "partials/index.html"
+				controller: 'mainController',
+				templateUrl: "partials/main.html"
 			})
 			.when('/main', 
 			{

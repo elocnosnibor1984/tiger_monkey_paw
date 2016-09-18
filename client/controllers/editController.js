@@ -1,4 +1,4 @@
-myApp.controller('editController', function($scope, $location, $sce, $routeParams, editFactory){
+myApp.controller('editController', function($scope, ModalService, $location, $sce, $routeParams, editFactory){
 
 	var count;
 
@@ -43,14 +43,27 @@ myApp.controller('editController', function($scope, $location, $sce, $routeParam
 			console.log(data);
 			$location.url("/list/"+$routeParams.list);
 		})
-		
-
 	}
 
 	
 	$scope.trustSrc = function(src) {
     return $sce.trustAsResourceUrl(src);
   }
+
+$scope.showModal = function() {
+
+//first attempt
+    ModalService.showModal({
+      templateUrl: "partials/modal.html",
+      controller: "modalController"
+    }).then(function(modal) {
+      modal.close.then(function(result) {
+        $scope.customResult = "All good!";
+      });
+      // modal.element.modal();
+    });
+
+  };
 
 	
 

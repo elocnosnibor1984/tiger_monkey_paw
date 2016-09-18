@@ -24,19 +24,51 @@ module.exports = (function() {
 				if(err){
 					console.log(err);
 				} else {
-					console.log("Lists****",lists);
+					// console.log("Lists****",lists);
 					res.json(lists);
+				}
+			})
+		},
+		searchList: function(req, res){
+			listDb.find({_id: req.params.id},function(err, list){
+				if(err){
+					console.log(err);
+				} else {
+					// console.log("Lists****",lists);
+					res.json(list);
 				}
 			})
 		},
 
 		deleteList: function(req, res){
-			listDb.findByIdAndRemove(req.params.id,function(err, lists){
+			listDb.find({_id:req.params.id},function(err, foundlist){
 				if(err){
 					console.log(err);
 				} else {
-					console.log(lists);
-					res.json(lists);
+					// console.log("***Here's the list of videos: ****", foundlist[0]._videos);
+					for(var i=0; i< foundlist[0]._videos.length; i++){
+						// console.log("NUMBER: ", i, foundlist[0]._videos[i]);
+						videoDb.find({_id: foundlist[0]._videos[i]}).populate("_videos").exec(function(err,vid){
+							console.log("VID: ", vid);
+							if(err){
+								console.log("error finding video: ", err);
+							}
+							else{
+								vid[0].remove();
+							}
+		
+						})
+					}
+					listDb.findByIdAndRemove(req.params.id, function(err, lists){
+						if(err){
+							console.log(err);
+						} else {
+							console.log(lists);
+							res.json(lists);
+						}
+					})
+					console.log("deleted list?");
+					// res.json(foundlist);
 				}
 			})
 		},
@@ -150,15 +182,31 @@ module.exports = (function() {
 			},
 
 			getVideos: function(req, res){
-				console.log("***backend controller: getVideos", req.params.id);
+				// console.log("***backend controller: getVideos", req.params.id);
 				listDb.find({_id: req.params.id}).populate('_videos').exec(function(err, videos){
 					if(err){
 						console.log(err);
 					} else {
-						console.log(videos);
+						// console.log(videos);
 						res.json(videos);
 					}
 				})
 			},
+
+			searchVideos: function(req, res){
+ 			console.log("Backend Controller - searchVideos", req.body.text);
+ 			videoDb.find({$or: [
+ 					 {"title": new RegExp(req.body.text, "i")},
+ 					 {"description": new RegExp(req.body.text, "i")}
+ 				]}, function(err, response){
+ 				if(err){
+ 					console.log(err);
+ 				}
+ 				else{
+ 					console.log('at the findNames function', response);
+ 					res.json(response);
+ 				}
+ 			})
+ 		},
 	}
 })();

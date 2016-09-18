@@ -110,11 +110,11 @@ myApp.controller('listController', function($scope, $location, $sce, $routeParam
 
 });
 
-myApp.filter('trusted', ['$sce', function ($sce) {
-    return function(url) {
-    		// console.log("first split", url.split('v=')[1]);
-    		// console.log("second split", url.split('&')[0]);
-            var video_id = url.split('v=')[1];
-        return $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + video_id);
-    };
-}]);
+// myApp.filter('trusted', ['$sce', function ($sce) {
+//     return function(url) {
+//     		// console.log("first split", url.split('v=')[1]);
+//     		// console.log("second split", url.split('&')[0]);
+//             var video_id = url.split('v=')[1];
+//         return $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + video_id);
+//     };
+// }]);

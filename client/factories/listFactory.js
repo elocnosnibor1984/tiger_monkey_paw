@@ -16,6 +16,12 @@ myApp.factory('listFactory', function($http){
 		});
 	}
 
+	factory.searchList = function(listId, callback){
+		$http.get('/searchList/' + listId).then(function(data){
+			callback(data.data);
+		});
+	}
+
 	factory.getVideos = function(data, callback){
 		// console.log("at listFactory.getVideos: ", data);
 		$http.get('/videos/' + data).then(function(data){
@@ -68,6 +74,18 @@ myApp.factory('listFactory', function($http){
 			}
 		})
 	}
+
+	factory.searchVideos = function(search, callback){
+		console.log("searchVideos Factory", search);
+ 		$http.post('/searchVideos', search).then(function(output){
+ 			if(output.error){
+ 				console.log(output.error);
+ 			}
+ 			else{
+ 				callback(output.data);
+ 			}
+ 		})
+ 	}
 
 	return factory;
 })

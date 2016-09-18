@@ -3,34 +3,38 @@ var editController = require('../controllers/edit.js');
 
 module.exports = function(app){
 	app.post('/dummies/:test', function(req, res){
-		console.log(req.body);
-		console.log(req.params.test)
+		// console.log(req.body);
+		// console.log(req.params.test)
 		// mongooseController.getMongooses(req, res);
 	})
 	app.post('/list', function(req, res){
-		console.log("got to addList-routes");
-		console.log(req.body);
+		// console.log("got to addList-routes");
+		// console.log(req.body);
 		listController.addList(req, res);
 	})
 	app.get('/list', function(req, res){
-		console.log(req.body);
+		// console.log(req.body);
 		listController.getLists(req, res);
 	})
+	app.get('/searchList/:id', function(req, res){
+		// console.log(req.body);
+		listController.searchList(req, res);
+	})
 	app.get('/videos/:id', function(req, res){
-		console.log("routes: videos/:id");
+		// console.log("routes: videos/:id");
 		listController.getVideos(req, res);
 	})
 	app.get('/deleteList/:id', function(req, res){
-		console.log("routes: deleteList/:id");
+		// console.log("routes: deleteList/:id");
 		listController.deleteList(req, res);
 	})
 	app.post('/deleteVideo', function(req, res){
-		console.log("routes: deleteVideo");
+		// console.log("routes: deleteVideo");
 		listController.deleteVideo(req, res);
 	})
 	app.post('/video', function(req, res){
-		console.log("got to addVideo-routes");
-		console.log(req.body);
+		// console.log("got to addVideo-routes");
+		// console.log(req.body);
 		listController.addVideo(req, res);
 	})
 	app.post('/updateReview', function(req, res){
@@ -43,8 +47,13 @@ module.exports = function(app){
 		editController.getVideoToEdit(req, res);
 	})
 	app.post('/changePos', function(req, res){
-		console.log("got to changePos-routes");
-		console.log(req.body);
+		// console.log("got to changePos-routes");
+		// console.log(req.body);
 		listController.changePos(req, res);
 	})
+	app.post('/searchVideos', function(req, res){
+ 		// console.log('************************search videos query**************************');
+ 		// console.log("posted info: ", req.body.text);
+ 		listController.searchVideos(req, res);
+ 	})
 }
